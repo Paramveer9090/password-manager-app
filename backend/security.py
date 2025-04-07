@@ -7,6 +7,7 @@ from cryptography.hazmat.backends import default_backend
 # Persistent AES Key Storage
 KEY_FILE = "aes_key.txt"
 
+
 def load_or_generate_key():
     """
     Loads the AES key from a file or generates a new one if it doesn't exist.
@@ -20,7 +21,9 @@ def load_or_generate_key():
             f.write(key)
         return key
 
+
 SECRET_KEY = load_or_generate_key()
+
 
 def encrypt_password(password: str) -> str:
     """
@@ -38,6 +41,7 @@ def encrypt_password(password: str) -> str:
     # Store IV + encrypted data in base64 format
     encrypted_data = base64.b64encode(iv + encrypted).decode("utf-8")
     return encrypted_data
+
 
 def decrypt_password(encrypted_password: str) -> str:
     """

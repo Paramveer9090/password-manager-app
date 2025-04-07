@@ -74,10 +74,10 @@ def retrieve_user_password(user_id: str):
 
 
 @app.get("/generate_password/")
-def generate_random_password(length: int = 16):
+def generate_random_password(length: int = 16, exclude_special: bool = False):
     """Generates a strong random password."""
     try:
-        password = generate_password(length)
+        password = generate_password(length, exclude_special)
         return {"password": password}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

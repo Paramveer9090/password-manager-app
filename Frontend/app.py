@@ -87,6 +87,7 @@ with tab2:
 
 # ⚡ Password Generator
 # ⚡ Password Generator
+# ⚡ Password Generator
 with tab3:
     st.subheader("⚡ Generate Strong Password")
     st.caption("Use this tool to create a strong, secure password that meets best practices.")
@@ -95,10 +96,7 @@ with tab3:
     exclude_special = st.checkbox("Exclude special characters (e.g., @, #, $)", help="Useful if some apps restrict special characters.")
 
     if st.button("Generate Password"):
-        params = {"length": length}
-        if exclude_special:
-            params["exclude_special"] = True
-
+        params = {"length": length, "exclude_special": exclude_special}  # ✅ Include this
         response = requests.get(f"{API_URL}/generate_password/", params=params)
         if response.status_code == 200:
             generated_password = response.json()["password"]
@@ -106,4 +104,5 @@ with tab3:
             st.code(generated_password, language='bash')
         else:
             st.error("❌ Failed to generate password. Please try again.")
+
 
